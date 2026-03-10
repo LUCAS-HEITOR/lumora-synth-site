@@ -14,6 +14,7 @@ export default function ProjectDetail() {
   const techRef = useScrollReveal();
   const galleryRef = useScrollReveal({ threshold: 0.05 });
   const videosRef = useScrollReveal({ threshold: 0.05 });
+  const localVideoRef = useScrollReveal({ threshold: 0.05 });
 
   if (!project) {
     return (
@@ -29,6 +30,9 @@ export default function ProjectDetail() {
   }
 
   const isInDev = project.status === 'in-development';
+  const hasVideos = project.videos && project.videos.length > 0;
+  const hasLocalVideo = !!project.localVideo;
+  const hasGallery = project.galleryImages && project.galleryImages.length > 0;
 
   return (
     <main className="page">
@@ -74,6 +78,16 @@ export default function ProjectDetail() {
           <div className="reveal-fade" ref={overviewRef}>
             <h2 className={styles.sectionTitle}>{t('project.overview')}</h2>
             <p className={styles.overviewText}>{project.overview}</p>
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.githubLink}
+              >
+                View on GitHub &rarr;
+              </a>
+            )}
           </div>
         </div>
       </section>
@@ -106,8 +120,8 @@ export default function ProjectDetail() {
         </div>
       </section>
 
-      {/* Videos */}
-      {project.videos && project.videos.length > 0 && (
+      {/* Instagram Videos */}
+      {hasVideos && (
         <section className="section section--alt">
           <div className="container container--narrow">
             <div className="reveal-fade" ref={videosRef}>
@@ -135,9 +149,32 @@ export default function ProjectDetail() {
         </section>
       )}
 
+      {/* Local Video */}
+      {hasLocalVideo && (
+        <section className={`section ${hasVideos ? '' : 'section--alt'}`}>
+          <div className="container container--narrow">
+            <div className="reveal-fade" ref={localVideoRef}>
+              <h2 className={styles.sectionTitle} style={{ textAlign: 'center' }}>
+                Gameplay
+              </h2>
+              <div className={styles.localVideoWrapper}>
+                <video
+                  controls
+                  preload="metadata"
+                  className={styles.localVideo}
+                >
+                  <source src={project.localVideo} type="video/mp4" />
+                  Your browser does not support video playback.
+                </video>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Gallery */}
-      {project.galleryImages && project.galleryImages.length > 0 && (
-        <section className={`section ${project.videos && project.videos.length > 0 ? '' : 'section--alt'}`}>
+      {hasGallery && (
+        <section className={`section ${(hasVideos || hasLocalVideo) ? '' : 'section--alt'}`}>
           <div className="container">
             <div className="reveal-fade" ref={galleryRef}>
               <h2 className={styles.sectionTitle} style={{ textAlign: 'center' }}>

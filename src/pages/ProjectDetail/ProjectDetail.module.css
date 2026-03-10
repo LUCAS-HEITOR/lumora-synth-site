@@ -133,6 +133,29 @@
   max-width: 700px;
 }
 
+.githubLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-black);
+  padding: var(--space-3) var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+  text-decoration: none;
+}
+
+.githubLink:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
 /* ── Features ── */
 .featureList {
   list-style: none;
@@ -297,6 +320,22 @@
 
 .videoCard:hover .videoLabel {
   color: var(--color-text);
+}
+
+/* ── Local Video ── */
+.localVideoWrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.localVideo {
+  width: 100%;
+  display: block;
+  background: var(--color-black);
+  border-radius: var(--radius-lg);
 }
 
 /* ── CTA ── */
