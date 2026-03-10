@@ -13,6 +13,7 @@ export default function ProjectDetail() {
   const featuresRef = useScrollReveal();
   const techRef = useScrollReveal();
   const galleryRef = useScrollReveal({ threshold: 0.05 });
+  const videosRef = useScrollReveal({ threshold: 0.05 });
 
   if (!project) {
     return (
@@ -27,6 +28,8 @@ export default function ProjectDetail() {
     );
   }
 
+  const isInDev = project.status === 'in-development';
+
   return (
     <main className="page">
       {/* Hero */}
@@ -36,7 +39,12 @@ export default function ProjectDetail() {
             <Link to="/portfolio" className={styles.backLink}>
               &larr; {t('project.back')}
             </Link>
-            <span className={styles.category}>{project.categoryLabel}</span>
+            <div className={styles.badges}>
+              <span className={styles.category}>{project.categoryLabel}</span>
+              {isInDev && (
+                <span className={styles.statusBadge}>In Development</span>
+              )}
+            </div>
             <h1 className={styles.title}>{project.title}</h1>
           </div>
         </div>
@@ -51,7 +59,9 @@ export default function ProjectDetail() {
             ) : (
               <div className={styles.imagePlaceholder}>
                 <div className={styles.placeholderIcon}>+</div>
-                <span className={styles.placeholderText}>Project Hero Image</span>
+                <span className={styles.placeholderText}>
+                  {isInDev ? 'Coming Soon' : 'Project Hero Image'}
+                </span>
               </div>
             )}
           </div>
@@ -96,9 +106,38 @@ export default function ProjectDetail() {
         </div>
       </section>
 
+      {/* Videos */}
+      {project.videos && project.videos.length > 0 && (
+        <section className="section section--alt">
+          <div className="container container--narrow">
+            <div className="reveal-fade" ref={videosRef}>
+              <h2 className={styles.sectionTitle} style={{ textAlign: 'center' }}>
+                Videos
+              </h2>
+              <div className={styles.videoGrid}>
+                {project.videos.map((url, i) => (
+                  <a
+                    key={i}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.videoCard}
+                  >
+                    <div className={styles.videoThumb}>
+                      <div className={styles.playIcon}>&#9654;</div>
+                    </div>
+                    <span className={styles.videoLabel}>Watch on Instagram</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Gallery */}
       {project.galleryImages && project.galleryImages.length > 0 && (
-        <section className="section section--alt">
+        <section className={`section ${project.videos && project.videos.length > 0 ? '' : 'section--alt'}`}>
           <div className="container">
             <div className="reveal-fade" ref={galleryRef}>
               <h2 className={styles.sectionTitle} style={{ textAlign: 'center' }}>

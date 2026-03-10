@@ -81,7 +81,12 @@ export default function Portfolio() {
                     </div>
                   </div>
                   <div className={styles.info}>
-                    <span className={styles.categoryTag}>{project.categoryLabel}</span>
+                    <div className={styles.tagRow}>
+                      <span className={styles.categoryTag}>{project.categoryLabel}</span>
+                      {project.status === 'in-development' && (
+                        <span className={styles.devBadge}>In Development</span>
+                      )}
+                    </div>
                     <h3 className={styles.projectTitle}>{project.title}</h3>
                     <p className={styles.projectDesc}>{project.shortDescription}</p>
                     <span className={styles.viewLink}>
