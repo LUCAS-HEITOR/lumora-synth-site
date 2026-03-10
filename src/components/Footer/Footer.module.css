@@ -1,0 +1,171 @@
+/* ============================================
+   Footer — Modern Startup
+   ============================================ */
+
+.footer {
+  background-color: var(--color-black);
+  color: var(--color-text-on-dark);
+  padding: var(--space-20) 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-gray-700), transparent);
+}
+
+/* Inner container */
+.container {
+  width: 100%;
+  max-width: var(--max-width-wide);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+/* ── 3-column grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--space-12);
+  padding-bottom: var(--space-16);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Section headers ── */
+.sectionLabel {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-gray-400);
+  margin: 0 0 var(--space-6);
+}
+
+/* ── Brand name ── */
+.brand {
+  font-family: var(--font-sans);
+  font-weight: var(--font-bold);
+  font-size: var(--text-lg);
+  color: var(--color-white);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-3);
+  transition: opacity var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.brand:hover {
+  opacity: 0.7;
+}
+
+.brandLogo {
+  height: 32px;
+  width: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* ── Description ── */
+.description {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+  color: var(--color-gray-400);
+  margin: 0;
+  max-width: 320px;
+}
+
+/* ── Link lists ── */
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.link {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--font-normal);
+  color: var(--color-gray-400);
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: inline-block;
+}
+
+.link:hover {
+  color: var(--color-white);
+  transform: translateX(4px);
+}
+
+/* ── Bottom bar ── */
+.bottom {
+  border-top: 1px solid var(--color-gray-800);
+  padding: var(--space-6) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.copyright {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--color-gray-500);
+}
+
+.legalLinks {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.legalLink {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--color-gray-500);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.legalLink:hover {
+  color: var(--color-white);
+}
+
+/* ============================================
+   Responsive — stacked layout on mobile
+   ============================================ */
+
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--space-16) 0 0;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+    padding-bottom: var(--space-10);
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-3);
+    text-align: center;
+  }
+}

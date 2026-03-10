@@ -1,0 +1,55 @@
+/* ============================================
+   About Page — Modern Startup
+   ============================================ */
+
+.content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.text {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.value {
+  text-align: center;
+  padding: var(--space-8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+}
+
+.value:hover {
+  border-color: var(--color-gray-400);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.valueTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-3);
+}
+
+.valueText {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+@media (max-width: 768px) {
+  .values {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}

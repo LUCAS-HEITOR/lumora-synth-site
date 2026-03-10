@@ -1,0 +1,28 @@
+.content {
+  padding-bottom: var(--space-16);
+}
+
+.section {
+  margin-bottom: var(--space-8);
+}
+
+.section h2 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  margin-bottom: var(--space-3);
+}
+
+.section p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.section a {
+  color: var(--color-text);
+  text-decoration: underline;
+}
+
+.section a:hover {
+  color: var(--color-gray-600);
+}

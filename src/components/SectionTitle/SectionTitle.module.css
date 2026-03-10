@@ -1,0 +1,64 @@
+/* ============================================
+   SectionTitle — Modern Startup
+   ============================================ */
+
+.wrapper {
+  text-align: center;
+  margin-bottom: var(--space-16);
+}
+
+.title {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text);
+  margin-bottom: var(--space-4);
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 3px;
+  background: var(--color-black);
+  border-radius: var(--radius-full);
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: var(--space-6) auto 0;
+  line-height: var(--leading-relaxed);
+}
+
+.light .title {
+  color: var(--color-white);
+}
+
+.light .title::after {
+  background: var(--color-white);
+}
+
+.light .subtitle {
+  color: var(--color-gray-400);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: var(--text-2xl);
+  }
+
+  .subtitle {
+    font-size: var(--text-base);
+  }
+
+  .wrapper {
+    margin-bottom: var(--space-12);
+  }
+}

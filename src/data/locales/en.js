@@ -1,0 +1,126 @@
+// English locale — Lumora Synth
+// Structure: section.key = text
+
+const en = {
+  nav: {
+    home: 'Home',
+    services: 'Services',
+    portfolio: 'Portfolio',
+    quote: 'Request Quote',
+    about: 'About',
+    faq: 'FAQ',
+    contact: 'Contact',
+  },
+  hero: {
+    headline: 'Interactive Digital Worlds & Roblox Experiences',
+    subheadline:
+      'We build Roblox games, digital twins, and custom software for immersive interactive projects.',
+    cta_services: 'View Services',
+    cta_portfolio: 'View Portfolio',
+  },
+  sections: {
+    services_title: 'Our Services',
+    services_subtitle: 'From games to automation — we build digital products that deliver results.',
+    service_groups: [
+      {
+        title: 'Interactive Experiences',
+        items: ['Roblox Game Development', 'Multiplayer Systems', 'Virtual Experiences'],
+      },
+      {
+        title: 'Digital Twins',
+        items: ['Campus Replication', 'Architecture Visualization', 'Interactive Environments'],
+      },
+      {
+        title: 'Software & Automation',
+        items: ['Websites', 'Workflow Automation', 'Custom Software'],
+      },
+    ],
+    how_title: 'How It Works',
+    how_subtitle: 'A simple process from idea to delivery.',
+    how_steps: [
+      { title: 'Tell Us Your Idea', text: 'Fill out our quote form or pick a service from the catalog.' },
+      { title: 'We Plan & Build', text: 'Our team scopes the project and starts development.' },
+      { title: 'Review & Launch', text: 'You review the work, request revisions, and we deliver the final product.' },
+    ],
+    highlights_title: 'Why Lumora Synth',
+    highlights: [
+      { title: 'Quality First', text: 'Every project is built with clean code and attention to detail.' },
+      { title: 'Global Reach', text: 'We serve clients in Brazil and worldwide, in English and Portuguese.' },
+      { title: 'Fast Delivery', text: 'We respect deadlines without compromising quality.' },
+      { title: 'Transparent Pricing', text: 'No hidden fees. You know exactly what you\'re paying for.' },
+    ],
+    trust_title: 'Technologies We Use',
+    featured_title: 'Featured Projects',
+    featured_button: 'View All Projects',
+    cta_title: 'Ready to Build Something?',
+    cta_text: 'Let\'s turn your idea into a real digital product.',
+    cta_button: 'Get Started',
+  },
+  services: {
+    buy: 'Buy Now',
+    quote: 'Request Quote',
+    starting_at: 'Starting at',
+    coming_soon: 'Coming Soon',
+    deliverables: 'Deliverables',
+    estimated_time: 'Estimated Time',
+    days: 'days',
+  },
+  portfolio: {
+    title: 'Selected Projects',
+    subtitle: 'Interactive experiences, digital twins and custom systems built for clients.',
+    filter_all: 'All',
+    filter_games: 'Games',
+    filter_twins: 'Digital Twins',
+    filter_web: 'Web & Software',
+    empty: 'Projects coming soon — stay tuned!',
+    view_project: 'View Project',
+  },
+  project: {
+    overview: 'Project Overview',
+    features: 'Features',
+    technologies: 'Technologies Used',
+    gallery: 'Gallery',
+    back: 'Back to Portfolio',
+    cta_title: 'Interested in a Similar Project?',
+    cta_text: 'Let\'s discuss how we can build something like this for you.',
+    cta_button: 'Request a Quote',
+  },
+  quote: {
+    title: 'Request a Quote',
+    subtitle: 'Tell us about your project and we\'ll get back to you within 24 hours.',
+    submit: 'Submit Request',
+    success: 'Your request has been submitted. We\'ll be in touch soon!',
+  },
+  checkout: {
+    title: 'Checkout',
+    summary: 'Order Summary',
+    payment_method: 'Payment Method',
+    total: 'Total',
+    pay: 'Complete Payment',
+  },
+  contact: {
+    title: 'Contact Us',
+    subtitle: 'Have a question? We\'d love to hear from you.',
+    send: 'Send Message',
+  },
+  faq: {
+    title: 'Frequently Asked Questions',
+    subtitle: 'Find answers to the most common questions about our services.',
+  },
+  about: {
+    title: 'About Lumora Synth',
+    text: 'Lumora Synth is a digital studio specializing in Roblox experiences, web development, automation, and custom software. We combine creativity and engineering to deliver premium digital products for clients around the world.',
+  },
+  footer: {
+    description:
+      'Digital studio specializing in Roblox experiences, web development, automation, and custom software.',
+    section_company: 'Company',
+    section_links: 'Quick Links',
+    section_contact: 'Contact',
+    rights: 'All rights reserved.',
+    privacy: 'Privacy Policy',
+    terms: 'Terms of Service',
+  },
+};
+
+export default en;

@@ -1,0 +1,117 @@
+/* ============================================
+   ServiceCard — Modern Startup
+   ============================================ */
+
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--color-black);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-base);
+}
+
+.card:hover {
+  border-color: var(--color-gray-400);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card.comingSoon {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.category {
+  font-size: var(--text-xs);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--color-gray-400);
+  margin-bottom: var(--space-3);
+}
+
+.name {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+  transition: color var(--transition-fast);
+}
+
+.card:hover .name {
+  color: var(--color-black);
+}
+
+.description {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+  flex: 1;
+}
+
+.pricing {
+  margin-bottom: var(--space-6);
+}
+
+.price {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+.badge {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-gray-500);
+  border: 1px solid var(--color-gray-300);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+}
+
+.card:hover .badge {
+  border-color: var(--color-gray-400);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.detailsLink {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+  transition: color var(--transition-fast);
+  margin-left: auto;
+}
+
+.detailsLink:hover {
+  color: var(--color-black);
+}
