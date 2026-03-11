@@ -71,9 +71,28 @@ export default function QuoteForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Send to API endpoint
-    console.log('[Quote] Form submitted:', form);
-    setSubmitted(true);
+    
+    // Enviar para Formspree
+    const formspreeEndpoint = 'https://formspree.io/f/xjgaydkz';
+    
+    fetch(formspreeEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log('[Quote] Form submitted successfully to Formspree');
+          setSubmitted(true);
+        } else {
+          console.error('[Quote] Error submitting form:', res.status);
+          alert('Error sending form. Please try again.');
+        }
+      })
+      .catch((err) => {
+        console.error('[Quote] Error:', err);
+        alert('Error sending form. Please try again.');
+      });
   };
 
   const handleExportCSV = () => {

@@ -1,10 +1,10 @@
-// Payment methods — Lumora Synth
+// Métodos de pagamento — Lumora Synth
 
 export const paymentMethods = [
   {
     id: 'mercado-pago',
     name: 'Mercado Pago',
-    description: 'Pix, credit card, boleto — for Brazilian clients',
+    description: 'Pix, cartão de crédito, boleto — para clientes brasileiros',
     region: 'BR',
     currencies: ['BRL'],
     icon: '🇧🇷',
@@ -12,7 +12,7 @@ export const paymentMethods = [
   {
     id: 'paypal',
     name: 'PayPal',
-    description: 'Credit card, PayPal balance — for international clients',
+    description: 'Cartão de crédito, saldo PayPal — para clientes internacionais',
     region: 'INTL',
     currencies: ['USD', 'EUR'],
     icon: '🌐',

@@ -1,52 +1,52 @@
-// FAQ data — Lumora Synth
+// Dados de FAQ — Lumora Synth
 
 export const faqItems = [
   {
     id: 1,
-    question: 'How long does a project typically take?',
+    question: 'Quanto tempo um projeto normalmente leva?',
     answer:
-      'Timelines vary depending on the scope. A simple landing page can be delivered in 1–2 weeks, while a full Roblox game or custom software may take 4–12 weeks. We provide an estimate during the quoting process.',
+      'Os prazos variam dependendo do escopo. Uma landing page simples pode ser entregue em 1–2 semanas, enquanto um jogo Roblox completo ou software personalizado pode levar de 4–12 semanas. Fornecemos uma estimativa durante o processo de orçamento.',
   },
   {
     id: 2,
-    question: 'How many revisions are included?',
+    question: 'Quantas revisões estão incluídas?',
     answer:
-      'All our packages include at least 2 rounds of revisions. Additional revisions can be arranged at an agreed-upon rate. We work closely with you to make sure the result matches your vision.',
+      'Todos os nossos pacotes incluem pelo menos 2 rodadas de revisões. Revisões adicionais podem ser combinadas por um valor acordado. Trabalhamos em conjunto com você para garantir que o resultado corresponda à sua visão.',
   },
   {
     id: 3,
-    question: 'What payment methods do you accept?',
+    question: 'Quais métodos de pagamento vocês aceitam?',
     answer:
-      'For Brazilian clients, we accept payments via Mercado Pago (Pix, credit card, boleto). For international clients, we accept PayPal. All payments are processed securely through our checkout.',
+      'Para clientes brasileiros, aceitamos pagamentos via Mercado Pago (Pix, cartão de crédito, boleto). Para clientes internacionais, aceitamos PayPal. Todos os pagamentos são processados de forma segura pelo nosso checkout.',
   },
   {
     id: 4,
-    question: 'Do you work with international clients?',
+    question: 'Vocês trabalham com clientes internacionais?',
     answer:
-      'Absolutely. We serve clients worldwide. Our team communicates in both Portuguese and English. We use async communication tools and adapt to your timezone for meetings when needed.',
+      'Com certeza. Atendemos clientes no mundo todo. Nossa equipe se comunica em português e inglês. Usamos ferramentas de comunicação assíncrona e nos adaptamos ao seu fuso horário para reuniões quando necessário.',
   },
   {
     id: 5,
-    question: 'What technologies do you work with?',
+    question: 'Com quais tecnologias vocês trabalham?',
     answer:
-      'Our stack includes React, Django, Python, Node.js, Luau (Roblox), Blender, and various automation tools. We pick the best technology for each project based on your requirements.',
+      'Nosso stack inclui React, Django, Python, Node.js, Luau (Roblox), Blender e diversas ferramentas de automação. Escolhemos a melhor tecnologia para cada projeto com base nos seus requisitos.',
   },
   {
     id: 6,
-    question: 'Can I request a fully custom project?',
+    question: 'Posso solicitar um projeto totalmente personalizado?',
     answer:
-      'Yes. If our standard packages don\'t fit your needs, use our Request Quote form to describe your project. We\'ll review it and send a custom proposal with scope, timeline, and pricing.',
+      'Sim. Se nossos pacotes padrão não atenderem suas necessidades, use nosso formulário de Solicitar Orçamento para descrever seu projeto. Analisaremos e enviaremos uma proposta personalizada com escopo, prazo e preço.',
   },
   {
     id: 7,
-    question: 'Do you offer ongoing support after delivery?',
+    question: 'Vocês oferecem suporte contínuo após a entrega?',
     answer:
-      'We offer a 30-day support window after delivery for bug fixes and minor adjustments. For long-term maintenance or feature additions, we can set up a retainer or per-request arrangement.',
+      'Oferecemos uma janela de suporte de 30 dias após a entrega para correção de bugs e ajustes menores. Para manutenção de longo prazo ou adição de funcionalidades, podemos configurar um acordo de retenção ou por demanda.',
   },
   {
     id: 8,
-    question: 'How do I get started?',
+    question: 'Como faço para começar?',
     answer:
-      'You can either purchase a service directly through our checkout or fill out the Request Quote form for custom projects. We\'ll reach out within 24 hours to discuss next steps.',
+      'Você pode comprar um serviço diretamente pelo nosso checkout ou preencher o formulário de Solicitar Orçamento para projetos personalizados. Entraremos em contato em até 24 horas para discutir os próximos passos.',
   },
 ];

@@ -13,9 +13,28 @@ export default function ContactForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Send form data to API
-    console.log('[Contact] Form submitted:', form);
-    setSubmitted(true);
+    
+    // Enviar para Formspree
+    const formspreeEndpoint = 'https://formspree.io/f/xjgaydkz';
+    
+    fetch(formspreeEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(form),
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log('[Contact] Form submitted successfully to Formspree');
+          setSubmitted(true);
+        } else {
+          console.error('[Contact] Error submitting form:', res.status);
+          alert('Error sending form. Please try again.');
+        }
+      })
+      .catch((err) => {
+        console.error('[Contact] Error:', err);
+        alert('Error sending form. Please try again.');
+      });
   };
 
   if (submitted) {

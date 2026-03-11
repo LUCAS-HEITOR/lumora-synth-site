@@ -30,7 +30,7 @@ export default function Portfolio() {
         <div className="container">
           <div className="reveal-fade" ref={heroRef}>
             <h1 className={styles.heroTitle}>{t('portfolio.title')}</h1>
-            <p className={styles.heroSub}>{t('portfolio.subtitle')}</p>
+            <p className={styles.heroSubj}>{t('portfolio.subtitle')}</p>
           </div>
         </div>
       </section>

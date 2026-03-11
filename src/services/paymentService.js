@@ -1,61 +1,65 @@
-// Payment service stubs — Lumora Synth
-// Replace these stubs with real API calls when integrating
+// Payment service — Lumora Synth
+// Integração real com Mercado Pago PIX e PayPal
 
 /**
- * Mercado Pago integration stub (for Brazilian clients).
- *
- * To integrate:
- * 1. Install: npm install mercadopago
- * 2. Create a backend endpoint that uses the MercadoPago SDK to create a preference
- * 3. Use the preference ID to redirect the user or render the MercadoPago checkout brick
- *
- * Docs: https://www.mercadopago.com.br/developers/en/docs
+ * Cria pagamento PIX via Mercado Pago (serverless API no Vercel).
  */
 export async function createMercadoPagoPayment(orderData) {
-  // TODO: Replace with real API call to your backend
-  // Your backend should:
-  //   1. Receive { title, quantity, unit_price, currency_id }
-  //   2. Create a MercadoPago preference using the SDK
-  //   3. Return the preference init_point URL
-  console.log('[MercadoPago] Creating payment:', orderData);
+  const response = await fetch('/api/create-pix', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      title: orderData.title,
+      description: orderData.title,
+      amount: orderData.unit_price,
+      email: orderData.email,
+    }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || 'Failed to create PIX payment');
+  }
 
   return {
     success: true,
-    redirectUrl: '#mercadopago-checkout', // Replace with real init_point
-    preferenceId: 'MOCK_PREFERENCE_ID',
+    id: data.id,
+    status: data.status,
+    qr_code: data.qr_code,
+    qr_code_base64: data.qr_code_base64,
+    ticket_url: data.ticket_url,
   };
 }
 
 /**
- * PayPal integration stub (for international clients).
- *
- * To integrate:
- * 1. Install: npm install @paypal/react-paypal-js
- * 2. Wrap your checkout with PayPalScriptProvider
- * 3. Render PayPalButtons component with createOrder and onApprove handlers
- *
- * Docs: https://developer.paypal.com/docs/checkout/
+ * Verifica status do pagamento PIX.
  */
-export async function createPayPalOrder(orderData) {
-  // TODO: Replace with real API call to your backend
-  // Your backend should:
-  //   1. Receive { description, amount, currency }
-  //   2. Call PayPal Orders API to create an order
-  //   3. Return the order ID
-  console.log('[PayPal] Creating order:', orderData);
+export async function checkPaymentStatus(paymentId) {
+  const response = await fetch(`/api/check-payment?id=${encodeURIComponent(paymentId)}`);
+  const data = await response.json();
 
-  return {
-    success: true,
-    orderId: 'MOCK_PAYPAL_ORDER_ID',
-  };
+  if (!response.ok) {
+    throw new Error(data.error || 'Failed to check payment');
+  }
+
+  return data;
 }
 
-export async function capturePayPalOrder(orderId) {
-  // TODO: Call your backend to capture the PayPal order after buyer approval
-  console.log('[PayPal] Capturing order:', orderId);
+/**
+ * PayPal — redireciona para PayPal.me para pagamentos internacionais.
+ * Abordagem simples sem API backend.
+ */
+export function createPayPalPayment(orderData) {
+  // Gera link PayPal.me com valor
+  // Substitua 'LumoraSynth' pelo seu username PayPal real
+  const paypalUsername = 'LumoraSynth';
+  const amount = orderData.amount;
+  const currency = orderData.currency || 'USD';
+  const paypalUrl = `https://www.paypal.com/paypalme/${paypalUsername}/${amount}${currency}`;
 
   return {
     success: true,
-    status: 'COMPLETED',
+    redirectUrl: paypalUrl,
   };
 }
