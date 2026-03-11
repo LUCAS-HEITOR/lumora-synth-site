@@ -2,6 +2,22 @@
 // Mercado Pago PIX + PayPal REST API
 
 /**
+ * Safely parses JSON from a fetch response.
+ * If the body is empty or non-JSON, throws a descriptive error.
+ */
+async function safeJson(response) {
+  const text = await response.text();
+  if (!text || text.trim() === '') {
+    throw new Error(`Empty response from server (HTTP ${response.status})`);
+  }
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`Server returned non-JSON response (HTTP ${response.status}): ${text.substring(0, 120)}`);
+  }
+}
+
+/**
  * Cria pagamento PIX via Mercado Pago (serverless API no Vercel).
  */
 export async function createMercadoPagoPayment(orderData) {
@@ -16,7 +32,7 @@ export async function createMercadoPagoPayment(orderData) {
     }),
   });
 
-  const data = await response.json();
+  const data = await safeJson(response);
 
   if (!response.ok) {
     throw new Error(data.error || data.details || 'Failed to create PIX payment');
@@ -37,7 +53,7 @@ export async function createMercadoPagoPayment(orderData) {
  */
 export async function checkPaymentStatus(paymentId) {
   const response = await fetch(`/api/check-payment?id=${encodeURIComponent(paymentId)}`);
-  const data = await response.json();
+  const data = await safeJson(response);
 
   if (!response.ok) {
     throw new Error(data.error || 'Failed to check payment');
@@ -63,7 +79,7 @@ export async function createPayPalOrder(orderData) {
     }),
   });
 
-  const data = await response.json();
+  const data = await safeJson(response);
 
   if (!response.ok) {
     throw new Error(data.error || data.details || 'Failed to create PayPal order');
@@ -82,7 +98,7 @@ export async function capturePayPalOrder(orderId) {
     body: JSON.stringify({ orderId }),
   });
 
-  const data = await response.json();
+  const data = await safeJson(response);
 
   if (!response.ok) {
     throw new Error(data.error || data.details || 'Failed to capture PayPal payment');
