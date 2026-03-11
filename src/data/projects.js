@@ -136,7 +136,7 @@ export const projects = [
     image: '/projects/chaos-obby/chaos-obby.png',
     galleryImages: [],
     videos: null,
-    localVideo: '/projects/chaos-obby/chaos-obby.mp4',
+    localVideo: null,
     status: 'completed',
     featured: true,
     modifiers: {
