@@ -1,9 +1,10 @@
 import { useLanguage } from '../../context/LanguageContext';
-import { faqItems } from '../../data/faq';
+import { getLocalizedFaqItems } from '../../data/faq';
 import FAQItem from '../../components/FAQItem/FAQItem';
 
 export default function FAQ() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const localizedFaq = getLocalizedFaqItems(lang);
 
   return (
     <div className="page">
@@ -13,7 +14,7 @@ export default function FAQ() {
           <p>{t('faq.subtitle')}</p>
         </div>
         <div>
-          {faqItems.map((item) => (
+          {localizedFaq.map((item) => (
             <FAQItem key={item.id} question={item.question} answer={item.answer} />
           ))}
         </div>

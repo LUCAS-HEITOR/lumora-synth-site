@@ -6,8 +6,8 @@ import styles from './ProjectDetail.module.css';
 
 export default function ProjectDetail() {
   const { slug } = useParams();
-  const { t } = useLanguage();
-  const project = getProjectBySlug(slug);
+  const { t, lang } = useLanguage();
+  const project = getProjectBySlug(slug, lang);
   const heroRef = useScrollReveal();
   const overviewRef = useScrollReveal();
   const featuresRef = useScrollReveal();
@@ -20,7 +20,7 @@ export default function ProjectDetail() {
     return (
       <main className="page">
         <div className="container container--narrow" style={{ textAlign: 'center', paddingTop: '8rem' }}>
-          <h1>Project not found</h1>
+          <h1>{t('project.not_found')}</h1>
           <Link to="/portfolio" className="btn btn--primary" style={{ marginTop: '2rem', display: 'inline-flex' }}>
             {t('project.back')}
           </Link>
@@ -46,7 +46,7 @@ export default function ProjectDetail() {
             <div className={styles.badges}>
               <span className={styles.category}>{project.categoryLabel}</span>
               {isInDev && (
-                <span className={styles.statusBadge}>In Development</span>
+                <span className={styles.statusBadge}>{t('project.in_development')}</span>
               )}
             </div>
             <h1 className={styles.title}>{project.title}</h1>
@@ -64,7 +64,7 @@ export default function ProjectDetail() {
               <div className={styles.imagePlaceholder}>
                 <div className={styles.placeholderIcon}>+</div>
                 <span className={styles.placeholderText}>
-                  {isInDev ? 'Coming Soon' : 'Project Hero Image'}
+                  {isInDev ? t('project.coming_soon') : t('project.hero_placeholder')}
                 </span>
               </div>
             )}
@@ -85,7 +85,7 @@ export default function ProjectDetail() {
                 rel="noopener noreferrer"
                 className={styles.githubLink}
               >
-                View on GitHub &rarr;
+                {t('project.view_github')} &rarr;
               </a>
             )}
           </div>
@@ -126,7 +126,7 @@ export default function ProjectDetail() {
           <div className="container container--narrow">
             <div className="reveal-fade" ref={videosRef}>
               <h2 className={styles.sectionTitle} style={{ textAlign: 'center' }}>
-                Videos
+                {t('project.videos')}
               </h2>
               <div className={styles.videoGrid}>
                 {project.videos.map((url, i) => (
@@ -140,7 +140,7 @@ export default function ProjectDetail() {
                     <div className={styles.videoThumb}>
                       <div className={styles.playIcon}>&#9654;</div>
                     </div>
-                    <span className={styles.videoLabel}>Watch on Instagram</span>
+                    <span className={styles.videoLabel}>{t('project.watch_instagram')}</span>
                   </a>
                 ))}
               </div>
@@ -155,7 +155,7 @@ export default function ProjectDetail() {
           <div className="container container--narrow">
             <div className="reveal-fade" ref={localVideoRef}>
               <h2 className={styles.sectionTitle} style={{ textAlign: 'center' }}>
-                Gameplay
+                {t('project.gameplay')}
               </h2>
               <div className={styles.localVideoWrapper}>
                 <video

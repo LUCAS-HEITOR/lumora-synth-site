@@ -1,5 +1,5 @@
 // Payment service — Lumora Synth
-// Integração real com Mercado Pago PIX e PayPal
+// Mercado Pago PIX + PayPal REST API
 
 /**
  * Cria pagamento PIX via Mercado Pago (serverless API no Vercel).
@@ -19,7 +19,7 @@ export async function createMercadoPagoPayment(orderData) {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data.error || 'Failed to create PIX payment');
+    throw new Error(data.error || data.details || 'Failed to create PIX payment');
   }
 
   return {
@@ -47,19 +47,46 @@ export async function checkPaymentStatus(paymentId) {
 }
 
 /**
- * PayPal — redireciona para PayPal.me para pagamentos internacionais.
- * Abordagem simples sem API backend.
+ * Cria ordem PayPal via serverless API.
+ * Retorna links incluindo a URL de aprovação.
  */
-export function createPayPalPayment(orderData) {
-  // Gera link PayPal.me com valor
-  // Substitua 'LumoraSynth' pelo seu username PayPal real
-  const paypalUsername = 'LumoraSynth';
-  const amount = orderData.amount;
-  const currency = orderData.currency || 'USD';
-  const paypalUrl = `https://www.paypal.com/paypalme/${paypalUsername}/${amount}${currency}`;
+export async function createPayPalOrder(orderData) {
+  const response = await fetch('/api/create-paypal-order', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      title: orderData.title,
+      amount: orderData.amount,
+      currency: orderData.currency || 'USD',
+      return_url: `${window.location.origin}/checkout?paypal=success`,
+      cancel_url: `${window.location.origin}/checkout?paypal=cancel`,
+    }),
+  });
 
-  return {
-    success: true,
-    redirectUrl: paypalUrl,
-  };
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || data.details || 'Failed to create PayPal order');
+  }
+
+  return data;
+}
+
+/**
+ * Captura pagamento PayPal após aprovação.
+ */
+export async function capturePayPalOrder(orderId) {
+  const response = await fetch('/api/capture-paypal-order', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ orderId }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.error || data.details || 'Failed to capture PayPal payment');
+  }
+
+  return data;
 }

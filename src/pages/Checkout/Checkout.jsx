@@ -3,7 +3,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
 import CheckoutSummary from '../../components/CheckoutSummary/CheckoutSummary';
 import PaymentMethodSelector from '../../components/PaymentMethodSelector/PaymentMethodSelector';
-import { createMercadoPagoPayment, checkPaymentStatus, createPayPalPayment } from '../../services/paymentService';
+import { createMercadoPagoPayment, checkPaymentStatus, createPayPalOrder, capturePayPalOrder } from '../../services/paymentService';
 import styles from './Checkout.module.css';
 
 export default function Checkout() {
@@ -16,6 +16,35 @@ export default function Checkout() {
   const [paymentStatus, setPaymentStatus] = useState(null);
   const [copied, setCopied] = useState(false);
   const pollRef = useRef(null);
+
+  // Handle PayPal return redirect
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const paypalStatus = params.get('paypal');
+    const paypalToken = params.get('token');
+
+    if (paypalStatus === 'success' && paypalToken) {
+      setProcessing(true);
+      capturePayPalOrder(paypalToken)
+        .then((data) => {
+          if (data.status === 'COMPLETED') {
+            setPaymentStatus('approved');
+            clearCart();
+          } else {
+            alert(t('checkout.paypal_error'));
+          }
+        })
+        .catch(() => {
+          alert(t('checkout.paypal_error'));
+        })
+        .finally(() => {
+          setProcessing(false);
+          window.history.replaceState({}, '', '/checkout');
+        });
+    } else if (paypalStatus === 'cancel') {
+      window.history.replaceState({}, '', '/checkout');
+    }
+  }, []);
 
   // Poll payment status when we have a PIX payment
   useEffect(() => {
@@ -49,7 +78,7 @@ export default function Checkout() {
     if (!cartItem || !selectedMethod) return;
 
     if (selectedMethod.id === 'mercado-pago' && !payerEmail) {
-      alert('Por favor, insira seu email para gerar o PIX.');
+      alert(t('checkout.email_required'));
       return;
     }
 
@@ -65,20 +94,39 @@ export default function Checkout() {
         });
         setPixData(result);
       } else if (selectedMethod.id === 'paypal') {
-        const result = createPayPalPayment({
-          description: cartItem.name,
+        const result = await createPayPalOrder({
+          title: cartItem.name,
           amount: cartItem.price,
-          currency: cartItem.currency,
+          currency: cartItem.currency || 'USD',
         });
-        window.open(result.redirectUrl, '_blank');
+        const approveLink = result.links?.find((l) => l.rel === 'approve');
+        if (approveLink) {
+          window.location.href = approveLink.href;
+          return;
+        }
+        throw new Error('No approval link');
       }
     } catch (error) {
       console.error('[Checkout] Payment error:', error);
-      alert('Erro ao processar pagamento. Tente novamente.');
+      alert(t('checkout.error'));
     } finally {
       setProcessing(false);
     }
   };
+
+  // PayPal processing screen (during redirect capture)
+  if (processing && !pixData && !cartItem) {
+    return (
+      <div className="page">
+        <div className="container container--narrow">
+          <div className={styles.successScreen}>
+            <div className={styles.successIcon}>⏳</div>
+            <h2>{t('checkout.paypal_processing')}</h2>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // Payment approved screen
   if (paymentStatus === 'approved') {
@@ -87,10 +135,10 @@ export default function Checkout() {
         <div className="container container--narrow">
           <div className={styles.successScreen}>
             <div className={styles.successIcon}>✅</div>
-            <h2>Pagamento Aprovado!</h2>
-            <p>Obrigado pela sua compra. Entraremos em contato em breve para iniciar o projeto.</p>
+            <h2>{t('checkout.approved_title')}</h2>
+            <p>{t('checkout.approved_text')}</p>
             <button className="btn btn--primary btn--lg" onClick={clearCart}>
-              Voltar ao Início
+              {t('checkout.approved_button')}
             </button>
           </div>
         </div>
@@ -104,12 +152,12 @@ export default function Checkout() {
       <div className="page">
         <div className="container container--narrow">
           <div className="page-header">
-            <h1>Pagamento PIX</h1>
+            <h1>{t('checkout.pix_title')}</h1>
           </div>
 
           <div className={styles.pixContainer}>
             <div className={styles.pixCard}>
-              <h3>Escaneie o QR Code para pagar</h3>
+              <h3>{t('checkout.pix_scan')}</h3>
 
               {pixData.qr_code_base64 && (
                 <div className={styles.qrCodeWrapper}>
@@ -123,7 +171,7 @@ export default function Checkout() {
 
               {pixData.qr_code && (
                 <div className={styles.pixCopySection}>
-                  <p className={styles.pixLabel}>Ou copie o código PIX:</p>
+                  <p className={styles.pixLabel}>{t('checkout.pix_copy_label')}</p>
                   <div className={styles.pixCodeBox}>
                     <code className={styles.pixCode}>
                       {pixData.qr_code.substring(0, 50)}...
@@ -132,7 +180,7 @@ export default function Checkout() {
                       className="btn btn--secondary btn--sm"
                       onClick={handleCopyPix}
                     >
-                      {copied ? 'Copiado!' : 'Copiar'}
+                      {copied ? t('checkout.pix_copied') : t('checkout.pix_copy')}
                     </button>
                   </div>
                 </div>
@@ -140,18 +188,18 @@ export default function Checkout() {
 
               <div className={styles.pixStatus}>
                 <div className={styles.statusDot} />
-                <span>Aguardando pagamento...</span>
+                <span>{t('checkout.pix_waiting')}</span>
               </div>
 
               <p className={styles.pixInfo}>
-                O status será atualizado automaticamente quando o pagamento for confirmado.
+                {t('checkout.pix_info')}
               </p>
 
               <button
                 className="btn btn--ghost btn--sm"
                 onClick={() => { setPixData(null); setPaymentStatus(null); }}
               >
-                Cancelar
+                {t('checkout.cancel')}
               </button>
             </div>
           </div>
@@ -175,7 +223,7 @@ export default function Checkout() {
             {selectedMethod?.id === 'mercado-pago' && (
               <div className={styles.emailField}>
                 <label className="form-label" htmlFor="payer-email">
-                  Email para pagamento PIX *
+                  {t('checkout.email_label')}
                 </label>
                 <input
                   id="payer-email"
@@ -196,7 +244,7 @@ export default function Checkout() {
               disabled={!cartItem || !selectedMethod || processing}
               onClick={handlePayment}
             >
-              {processing ? 'Processando...' : t('checkout.pay')}
+              {processing ? t('checkout.processing') : t('checkout.pay')}
             </button>
 
             {cartItem && (
@@ -204,7 +252,7 @@ export default function Checkout() {
                 className="btn btn--ghost btn--sm btn--full mt-4"
                 onClick={clearCart}
               >
-                Cancelar
+                {t('checkout.cancel')}
               </button>
             )}
           </div>

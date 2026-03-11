@@ -8,7 +8,7 @@ export default function CheckoutSummary({ item }) {
   if (!item) {
     return (
       <div className={styles.empty}>
-        <p>No items in cart. Please select a service first.</p>
+        <p>{t('checkout.empty')}</p>
       </div>
     );
   }
@@ -17,11 +17,11 @@ export default function CheckoutSummary({ item }) {
     <div className={styles.summary}>
       <h3 className={styles.heading}>{t('checkout.summary')}</h3>
       <div className={styles.row}>
-        <span className={styles.label}>Service</span>
+        <span className={styles.label}>{t('checkout.service')}</span>
         <span className={styles.value}>{item.name}</span>
       </div>
       <div className={styles.row}>
-        <span className={styles.label}>Currency</span>
+        <span className={styles.label}>{t('checkout.currency')}</span>
         <span className={styles.value}>{item.currency}</span>
       </div>
       <div className={styles.divider} />

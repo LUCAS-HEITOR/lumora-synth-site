@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
-import { projects } from '../../data/projects';
+import { getLocalizedProjects } from '../../data/projects';
 import useScrollReveal from '../../hooks/useScrollReveal';
 import styles from './Portfolio.module.css';
 
@@ -13,15 +13,16 @@ const FILTERS = [
 ];
 
 export default function Portfolio() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('all');
   const heroRef = useScrollReveal();
   const gridRef = useScrollReveal({ threshold: 0.05 });
 
+  const allProjects = getLocalizedProjects(lang);
   const filtered =
     activeFilter === 'all'
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
+      ? allProjects
+      : allProjects.filter((p) => p.category === activeFilter);
 
   return (
     <main className="page">
@@ -84,7 +85,7 @@ export default function Portfolio() {
                     <div className={styles.tagRow}>
                       <span className={styles.categoryTag}>{project.categoryLabel}</span>
                       {project.status === 'in-development' && (
-                        <span className={styles.devBadge}>In Development</span>
+                        <span className={styles.devBadge}>{t('project.in_development')}</span>
                       )}
                     </div>
                     <h3 className={styles.projectTitle}>{project.title}</h3>

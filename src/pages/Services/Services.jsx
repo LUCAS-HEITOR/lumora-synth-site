@@ -1,18 +1,20 @@
 import { useState } from 'react';
-import { services, categories } from '../../data/services';
+import { getLocalizedServices, getLocalizedCategories } from '../../data/services';
 import ServiceCard from '../../components/ServiceCard/ServiceCard';
 import SectionTitle from '../../components/SectionTitle/SectionTitle';
 import { useLanguage } from '../../context/LanguageContext';
 import styles from './Services.module.css';
 
 export default function Services() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('all');
 
+  const allServices = getLocalizedServices(lang);
+  const localizedCategories = getLocalizedCategories(lang);
   const filteredServices =
     activeCategory === 'all'
-      ? services
-      : services.filter((s) => s.category === activeCategory);
+      ? allServices
+      : allServices.filter((s) => s.category === activeCategory);
 
   return (
     <div className="page">
@@ -27,9 +29,9 @@ export default function Services() {
             className={`${styles.filterBtn} ${activeCategory === 'all' ? styles.filterBtnActive : ''}`}
             onClick={() => setActiveCategory('all')}
           >
-            All
+            {t('services.all')}
           </button>
-          {categories.map((cat) => (
+          {localizedCategories.map((cat) => (
             <button
               key={cat.id}
               className={`${styles.filterBtn} ${activeCategory === cat.id ? styles.filterBtnActive : ''}`}

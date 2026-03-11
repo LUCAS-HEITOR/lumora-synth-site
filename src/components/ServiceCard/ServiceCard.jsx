@@ -40,7 +40,7 @@ export default function ServiceCard({ service }) {
           </>
         )}
         <Link to={`/services/${service.slug}`} className={styles.detailsLink}>
-          Learn more →
+          {t('services.learn_more')} →
         </Link>
       </div>
     </div>

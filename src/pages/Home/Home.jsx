@@ -19,9 +19,9 @@ const TECH_STACK = [
 ];
 
 export default function Home() {
-  const { t } = useLanguage();
-  const featuredServices = getFeaturedServices();
-  const featuredProjects = getFeaturedProjects();
+  const { t, lang } = useLanguage();
+  const featuredServices = getFeaturedServices(lang);
+  const featuredProjects = getFeaturedProjects(lang);
   const steps = t('sections.how_steps');
   const highlights = t('sections.highlights');
   const serviceGroups = t('sections.service_groups');

@@ -7,20 +7,20 @@ import styles from './ServiceDetails.module.css';
 
 export default function ServiceDetails() {
   const { slug } = useParams();
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { addToCart } = useCart();
 
-  const service = getServiceBySlug(slug);
+  const service = getServiceBySlug(slug, lang);
 
   if (!service) {
     return (
       <div className="page">
         <div className="container container--narrow">
           <div className={styles.notFound}>
-            <h1>Service Not Found</h1>
-            <p>The service you are looking for does not exist or has been removed.</p>
+            <h1>{t('services.not_found_title')}</h1>
+            <p>{t('services.not_found_text')}</p>
             <Link to="/services" className="btn btn--primary">
-              Back to Services
+              {t('services.back')}
             </Link>
           </div>
         </div>
@@ -37,7 +37,7 @@ export default function ServiceDetails() {
       <div className="container container--narrow">
         <div className={styles.header}>
           <Link to="/services" className={styles.backLink}>
-            &larr; All Services
+            &larr; {t('services.back')}
           </Link>
           <span className={styles.category}>
             {service.category.replace('-', ' ')}

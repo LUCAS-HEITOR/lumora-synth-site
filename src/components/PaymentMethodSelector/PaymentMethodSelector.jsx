@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
-import { paymentMethods } from '../../data/paymentMethods';
+import { getLocalizedPaymentMethods } from '../../data/paymentMethods';
 import styles from './PaymentMethodSelector.module.css';
 
 export default function PaymentMethodSelector({ onSelect }) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [selected, setSelected] = useState(null);
+  const methods = getLocalizedPaymentMethods(lang);
 
   const handleSelect = (method) => {
     setSelected(method.id);
@@ -16,7 +17,7 @@ export default function PaymentMethodSelector({ onSelect }) {
     <div className={styles.wrapper}>
       <h3 className={styles.heading}>{t('checkout.payment_method')}</h3>
       <div className={styles.methods}>
-        {paymentMethods.map((method) => (
+        {methods.map((method) => (
           <button
             key={method.id}
             className={`${styles.method} ${selected === method.id ? styles.selected : ''}`}
