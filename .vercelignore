@@ -1,0 +1,4 @@
+# Large media files — host externally (e.g. YouTube, Cloudinary)
+*.mp4
+*.mov
+*.avi
