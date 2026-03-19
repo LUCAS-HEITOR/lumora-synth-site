@@ -10,12 +10,12 @@ import useScrollReveal from '../../hooks/useScrollReveal';
 import styles from './Home.module.css';
 
 const TECH_STACK = [
-  'Roblox Studio',
-  'Lua',
-  'Blender',
-  'Node.js',
   'React',
-  'Three.js',
+  'Node.js',
+  'Python',
+  'Selenium',
+  'Django',
+  'PostgreSQL',
 ];
 
 export default function Home() {

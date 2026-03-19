@@ -6,11 +6,9 @@ import styles from './QuoteForm.module.css';
 
 const SERVICE_TYPES = [
   { value: 'websites', label: 'Website' },
-  { value: 'roblox-games', label: 'Roblox Game' },
-  { value: 'digital-twins', label: 'Digital Twin' },
   { value: 'automations', label: 'Automation' },
-  { value: 'custom-programs', label: 'Custom Program' },
-  { value: 'blender-3d', label: '3D / Blender' },
+  { value: 'custom-programs', label: 'Custom Software / Dashboard' },
+  { value: 'bundles', label: 'Bundle / Package' },
 ];
 
 const INITIAL_STATE = {
@@ -33,13 +31,6 @@ const INITIAL_STATE = {
   webNeedsAdmin: false,
   webNeedsCheckout: false,
   webNeedsBlog: false,
-  // Roblox-specific
-  robloxGameType: '',
-  robloxScripting: false,
-  robloxMap: false,
-  robloxUI: false,
-  robloxMultiplayer: false,
-  robloxMonetization: false,
   // Automation-specific
   autoTarget: '',
   autoTools: '',
@@ -223,38 +214,6 @@ export default function QuoteForm() {
             <div className="form-checkbox-group">
               <input type="checkbox" id="q-blog" name="webNeedsBlog" checked={form.webNeedsBlog} onChange={handleChange} />
               <label htmlFor="q-blog">Needs blog?</label>
-            </div>
-          </div>
-        </fieldset>
-      )}
-
-      {(form.serviceType === 'roblox-games' || form.serviceType === 'digital-twins') && (
-        <fieldset className={styles.fieldset}>
-          <legend className={styles.legend}>Roblox Details</legend>
-          <div className="form-group">
-            <label className="form-label" htmlFor="q-gametype">Game / Experience Type</label>
-            <input id="q-gametype" className="form-input" name="robloxGameType" value={form.robloxGameType} onChange={handleChange} placeholder="e.g., Obby, Tycoon, RPG, Simulator" />
-          </div>
-          <div className={styles.checkboxGrid}>
-            <div className="form-checkbox-group">
-              <input type="checkbox" id="q-scripting" name="robloxScripting" checked={form.robloxScripting} onChange={handleChange} />
-              <label htmlFor="q-scripting">Needs scripting?</label>
-            </div>
-            <div className="form-checkbox-group">
-              <input type="checkbox" id="q-map" name="robloxMap" checked={form.robloxMap} onChange={handleChange} />
-              <label htmlFor="q-map">Needs custom map?</label>
-            </div>
-            <div className="form-checkbox-group">
-              <input type="checkbox" id="q-rui" name="robloxUI" checked={form.robloxUI} onChange={handleChange} />
-              <label htmlFor="q-rui">Needs UI/UX?</label>
-            </div>
-            <div className="form-checkbox-group">
-              <input type="checkbox" id="q-multi" name="robloxMultiplayer" checked={form.robloxMultiplayer} onChange={handleChange} />
-              <label htmlFor="q-multi">Multiplayer?</label>
-            </div>
-            <div className="form-checkbox-group">
-              <input type="checkbox" id="q-monet" name="robloxMonetization" checked={form.robloxMonetization} onChange={handleChange} />
-              <label htmlFor="q-monet">Monetization?</label>
             </div>
           </div>
         </fieldset>

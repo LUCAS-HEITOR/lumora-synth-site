@@ -10,8 +10,8 @@ export const faqItems = [
       pt: 'Quanto tempo um projeto normalmente leva?',
     },
     answer: {
-      en: 'Timelines vary depending on scope. A simple landing page can be delivered in 1–2 weeks, while a full Roblox game or custom software can take 4–12 weeks. We provide an estimate during the quoting process.',
-      pt: 'Os prazos variam dependendo do escopo. Uma landing page simples pode ser entregue em 1–2 semanas, enquanto um jogo Roblox completo ou software personalizado pode levar de 4–12 semanas. Fornecemos uma estimativa durante o processo de orçamento.',
+      en: 'Timelines vary depending on scope. A simple landing page can be delivered in 1–2 weeks, while a full website or custom software can take 4–12 weeks. We provide an estimate during the quoting process.',
+      pt: 'Os prazos variam dependendo do escopo. Uma landing page simples pode ser entregue em 1–2 semanas, enquanto um website completo ou software personalizado pode levar de 4–12 semanas. Fornecemos uma estimativa durante o processo de orçamento.',
     },
   },
   {
@@ -32,8 +32,8 @@ export const faqItems = [
       pt: 'Quais métodos de pagamento vocês aceitam?',
     },
     answer: {
-      en: 'For Brazilian clients, we accept Mercado Pago payments (Pix, credit card, boleto). For international clients, we accept PayPal. All payments are securely processed through our checkout.',
-      pt: 'Para clientes brasileiros, aceitamos pagamentos via Mercado Pago (Pix, cartão de crédito, boleto). Para clientes internacionais, aceitamos PayPal. Todos os pagamentos são processados de forma segura pelo nosso checkout.',
+      en: 'We accept PayPal for all clients. All prices are in USD (US Dollars). Payments are securely processed through our checkout.',
+      pt: 'Aceitamos PayPal para todos os clientes. Todos os preços são em USD (Dólares Americanos). Os pagamentos são processados de forma segura pelo nosso checkout.',
     },
   },
   {
@@ -54,8 +54,8 @@ export const faqItems = [
       pt: 'Com quais tecnologias vocês trabalham?',
     },
     answer: {
-      en: 'Our stack includes React, Django, Python, Node.js, Luau (Roblox), Blender, and various automation tools. We choose the best technology for each project based on your requirements.',
-      pt: 'Nosso stack inclui React, Django, Python, Node.js, Luau (Roblox), Blender e diversas ferramentas de automação. Escolhemos a melhor tecnologia para cada projeto com base nos seus requisitos.',
+      en: 'Our stack includes React, Django, Python, Node.js, Selenium, and various automation tools. We choose the best technology for each project based on your requirements.',
+      pt: 'Nosso stack inclui React, Django, Python, Node.js, Selenium e diversas ferramentas de automação. Escolhemos a melhor tecnologia para cada projeto com base nos seus requisitos.',
     },
   },
   {
@@ -82,6 +82,17 @@ export const faqItems = [
   },
   {
     id: 8,
+    question: {
+      en: 'What are the bundles and how do they save me money?',
+      pt: 'O que são os pacotes e como eles economizam dinheiro?',
+    },
+    answer: {
+      en: 'Our bundles combine related services at a discounted price. For example, the Startup Bundle includes a Landing Page, Selenium Bot, and Email Marketing Setup for $320 — saving you compared to buying each separately. Check our Services page for all available bundles.',
+      pt: 'Nossos pacotes combinam serviços relacionados com preço com desconto. Por exemplo, o Pacote Startup inclui Landing Page, Bot Selenium e Configuração de E-mail Marketing por $320 — economizando em comparação à compra separada. Confira nossa página de Serviços para todos os pacotes disponíveis.',
+    },
+  },
+  {
+    id: 9,
     question: {
       en: 'How do I get started?',
       pt: 'Como faço para começar?',

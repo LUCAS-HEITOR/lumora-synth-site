@@ -32,7 +32,7 @@ export default function About() {
             <div className={styles.value}>
               <h3 className={styles.valueTitle}>Our Stack</h3>
               <p className={styles.valueText}>
-                React, Django, Python, Node.js, Luau (Roblox), Blender, and a growing collection
+                React, Django, Python, Node.js, Selenium, and a growing collection
                 of automation tools — we choose the right technology for each project.
               </p>
             </div>

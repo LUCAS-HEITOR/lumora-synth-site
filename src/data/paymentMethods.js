@@ -4,26 +4,26 @@ import { localizeList } from '../utils/localize';
 
 export const paymentMethods = [
   {
-    id: 'mercado-pago',
-    name: 'Mercado Pago',
+    id: 'paypal',
+    name: 'PayPal',
     description: {
-      en: 'Pix, credit card, boleto — for Brazilian clients',
-      pt: 'Pix, cartão de crédito, boleto — para clientes brasileiros',
+      en: 'Credit card, debit card, PayPal balance — pay in USD',
+      pt: 'Cartão de crédito, débito, saldo PayPal — pague em USD',
+    },
+    region: 'INTL',
+    currencies: ['USD'],
+    icon: '💳',
+  },
+  {
+    id: 'mercado-pago',
+    name: 'Mercado Pago (PIX)',
+    description: {
+      en: 'PIX instant payment — for Brazilian clients (BRL equivalent)',
+      pt: 'Pagamento instantâneo via PIX — para clientes brasileiros (equivalente em BRL)',
     },
     region: 'BR',
     currencies: ['BRL'],
     icon: '🇧🇷',
-  },
-  {
-    id: 'paypal',
-    name: 'PayPal',
-    description: {
-      en: 'Credit card, PayPal balance — for international clients',
-      pt: 'Cartão de crédito, saldo PayPal — para clientes internacionais',
-    },
-    region: 'INTL',
-    currencies: ['USD', 'EUR'],
-    icon: '🌐',
   },
 ];
 

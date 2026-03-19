@@ -22,8 +22,8 @@ export default function TermsOfService() {
           <section className={styles.section}>
             <h2>2. Services</h2>
             <p>
-              Lumora Synth provides digital services including but not limited to Roblox game
-              development, website development, automation solutions, and custom software development.
+              Lumora Synth provides digital services including but not limited to website
+              development, automation solutions, custom bots, and custom software development.
               Service details, deliverables, and pricing are specified in individual project proposals.
             </p>
           </section>
@@ -31,8 +31,7 @@ export default function TermsOfService() {
           <section className={styles.section}>
             <h2>3. Payments</h2>
             <p>
-              Payments are processed through Mercado Pago (for Brazilian clients) and PayPal
-              (for international clients). All prices are listed in USD unless otherwise specified.
+              Payments are processed through PayPal. All prices are listed in USD (US Dollars).
               Payment terms are agreed upon before project commencement.
             </p>
           </section>

@@ -7,9 +7,8 @@ import styles from './Portfolio.module.css';
 
 const FILTERS = [
   { key: 'all', labelKey: 'portfolio.filter_all' },
-  { key: 'roblox-game', labelKey: 'portfolio.filter_games' },
-  { key: 'digital-twin', labelKey: 'portfolio.filter_twins' },
-  { key: 'web-software', labelKey: 'portfolio.filter_web' },
+  { key: 'website', labelKey: 'portfolio.filter_web' },
+  { key: 'automation', labelKey: 'portfolio.filter_automation' },
 ];
 
 export default function Portfolio() {
